@@ -1,0 +1,229 @@
+#! /opt/homebrew/Cellar/icarus-verilog/11.0/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/system.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/v2005_math.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/va_math.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/v2009.vpi";
+S_0x10de041e0 .scope package, "$unit" "$unit" 2 1;
+ .timescale 0 0;
+enum0x11df10600 .enum4 (3)
+   "SUM" 3'b001,
+   "MULT" 3'b010,
+   "SUB" 3'b011,
+   "SQRT" 3'b100,
+   "DIV" 3'b101
+ ;
+S_0x10de04360 .scope module, "calculator_piped" "calculator_piped" 3 26;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "calc_clock";
+    .port_info 1 /INPUT 1 "calc_rst";
+    .port_info 2 /INPUT 3 "opcode";
+    .port_info 3 /INPUT 32 "op_in1";
+    .port_info 4 /INPUT 32 "op_in2";
+    .port_info 5 /INPUT 1 "op_in_sel";
+    .port_info 6 /OUTPUT 64 "result";
+    .port_info 7 /OUTPUT 1 "valid_res";
+P_0x10de044d0 .param/str "DUMP_NAME" 0 3 29, "calculator_dump";
+P_0x10de04510 .param/l "DW" 0 3 28, +C4<00000000000000000000000000100000>;
+L_0x10de16260 .functor NOT 1, v0x10de15c60_0, C4<0>, C4<0>, C4<0>;
+L_0x10de162f0 .functor NOT 1, v0x10de15c60_0, C4<0>, C4<0>, C4<0>;
+L_0x10de166d0 .functor BUFZ 1, L_0x10de163e0, C4<0>, C4<0>, C4<0>;
+L_0x1280400a0 .functor BUFT 1, C4<0000000000000000000000000000000000000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x10de154a0_0 .net/2u *"_ivl_10", 63 0, L_0x1280400a0;  1 drivers
+v0x10de15540_0 .net *"_ivl_2", 0 0, L_0x10de162f0;  1 drivers
+L_0x128040010 .functor BUFT 1, C4<1>, C4<0>, C4<0>, C4<0>;
+v0x10de155e0_0 .net/2u *"_ivl_4", 0 0, L_0x128040010;  1 drivers
+L_0x128040058 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x10de15680_0 .net/2u *"_ivl_6", 0 0, L_0x128040058;  1 drivers
+o0x128008010 .functor BUFZ 1, C4<z>; HiZ drive
+v0x10de15730_0 .net "calc_clock", 0 0, o0x128008010;  0 drivers
+o0x128008100 .functor BUFZ 1, C4<z>; HiZ drive
+v0x10de15800_0 .net "calc_rst", 0 0, o0x128008100;  0 drivers
+v0x10de158b0_0 .net "int_valid", 0 0, L_0x10de163e0;  1 drivers
+o0x1280083a0 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x10de15940_0 .net "op_in1", 31 0, o0x1280083a0;  0 drivers
+o0x1280083d0 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x10de159e0_0 .net "op_in2", 31 0, o0x1280083d0;  0 drivers
+o0x128008400 .functor BUFZ 1, C4<z>; HiZ drive
+v0x10de15b10_0 .net "op_in_sel", 0 0, o0x128008400;  0 drivers
+o0x128008430 .functor BUFZ 3, C4<zzz>; HiZ drive
+v0x10de15bb0_0 .net "opcode", 2 0, o0x128008430;  0 drivers
+v0x10de15c60_0 .var "overflow", 0 0;
+v0x10de15d00_0 .var "place_h_res", 63 0;
+v0x10de15dc0_0 .net "result", 63 0, L_0x10de165b0;  1 drivers
+v0x10de15e50_0 .net "sampled_res", 63 0, L_0x10de16170;  1 drivers
+v0x10de15ee0_0 .net "valid_res", 0 0, L_0x10de166d0;  1 drivers
+E_0x10de045f0 .event edge, v0x10de15bb0_0, v0x10de159e0_0, v0x10de15940_0, v0x10de15b10_0;
+L_0x10de163e0 .functor MUXZ 1, L_0x128040058, L_0x128040010, L_0x10de162f0, C4<>;
+L_0x10de165b0 .functor MUXZ 64, L_0x1280400a0, L_0x10de16170, L_0x10de163e0, C4<>;
+S_0x10de04770 .scope module, "u_ff_sampling" "en_ff" 3 63, 4 3 0, S_0x10de04360;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "ff_clk";
+    .port_info 1 /INPUT 1 "ff_rst";
+    .port_info 2 /INPUT 1 "ff_en";
+    .port_info 3 /INPUT 64 "ff_in_d";
+    .port_info 4 /OUTPUT 64 "ff_out_q";
+    .port_info 5 /OUTPUT 64 "ff_out_not_q";
+P_0x10de04930 .param/l "FF_WIDTH" 0 4 5, +C4<0000000000000000000000000000000000000000000000000000000001000000>;
+P_0x10de04970 .param/l "INITAL_VALUE" 0 4 8, C4<00000000000000000000000000000000>;
+P_0x10de049b0 .param/l "NEGEDGE_SAMPLING" 0 4 6, C4<0>;
+P_0x10de049f0 .param/l "POSEDGE_SAMPLING" 0 4 7, C4<1>;
+L_0x10de16030 .functor BUFZ 1, o0x128008010, C4<0>, C4<0>, C4<0>;
+L_0x10de160d0 .functor NOT 64, v0x10de15360_0, C4<0000000000000000000000000000000000000000000000000000000000000000>, C4<0000000000000000000000000000000000000000000000000000000000000000>, C4<0000000000000000000000000000000000000000000000000000000000000000>;
+L_0x10de16170 .functor BUFZ 64, v0x10de15360_0, C4<0000000000000000000000000000000000000000000000000000000000000000>, C4<0000000000000000000000000000000000000000000000000000000000000000>, C4<0000000000000000000000000000000000000000000000000000000000000000>;
+v0x10de04e70_0 .net "ff_clk", 0 0, o0x128008010;  alias, 0 drivers
+v0x10de14f20_0 .net "ff_en", 0 0, L_0x10de16260;  1 drivers
+v0x10de14fc0_0 .net "ff_in_d", 63 0, v0x10de15d00_0;  1 drivers
+v0x10de15080_0 .net "ff_out_not_q", 63 0, L_0x10de160d0;  1 drivers
+v0x10de15130_0 .net "ff_out_q", 63 0, L_0x10de16170;  alias, 1 drivers
+v0x10de15220_0 .net "ff_rst", 0 0, o0x128008100;  alias, 0 drivers
+v0x10de152c0_0 .net "l_clk", 0 0, L_0x10de16030;  1 drivers
+v0x10de15360_0 .var "q", 63 0;
+E_0x10de04c60 .event posedge, v0x10de15220_0, v0x10de152c0_0;
+S_0x10de04ca0 .scope begin, "proc_ip_calculation" "proc_ip_calculation" 4 35, 4 35 0, S_0x10de04770;
+ .timescale 0 0;
+    .scope S_0x10de04770;
+T_0 ;
+    %end;
+    .thread T_0;
+    .scope S_0x10de04770;
+T_1 ;
+    %wait E_0x10de04c60;
+    %fork t_1, S_0x10de04ca0;
+    %jmp t_0;
+    .scope S_0x10de04ca0;
+t_1 ;
+    %load/vec4 v0x10de15220_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.0, 8;
+    %pushi/vec4 0, 0, 64;
+    %assign/vec4 v0x10de15360_0, 0;
+    %jmp T_1.1;
+T_1.0 ;
+    %load/vec4 v0x10de14f20_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.2, 8;
+    %load/vec4 v0x10de14fc0_0;
+    %assign/vec4 v0x10de15360_0, 0;
+T_1.2 ;
+T_1.1 ;
+    %end;
+    .scope S_0x10de04770;
+t_0 %join;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0x10de04360;
+T_2 ;
+Ewait_0 .event/or E_0x10de045f0, E_0x0;
+    %wait Ewait_0;
+    %load/vec4 v0x10de15bb0_0;
+    %dup/vec4;
+    %pushi/vec4 1, 0, 3;
+    %cmp/u;
+    %jmp/1 T_2.0, 6;
+    %dup/vec4;
+    %pushi/vec4 2, 0, 3;
+    %cmp/u;
+    %jmp/1 T_2.1, 6;
+    %dup/vec4;
+    %pushi/vec4 3, 0, 3;
+    %cmp/u;
+    %jmp/1 T_2.2, 6;
+    %dup/vec4;
+    %pushi/vec4 4, 0, 3;
+    %cmp/u;
+    %jmp/1 T_2.3, 6;
+    %dup/vec4;
+    %pushi/vec4 5, 0, 3;
+    %cmp/u;
+    %jmp/1 T_2.4, 6;
+    %pushi/vec4 0, 0, 64;
+    %store/vec4 v0x10de15d00_0, 0, 64;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x10de15c60_0, 0, 1;
+    %jmp T_2.6;
+T_2.0 ;
+    %load/vec4 v0x10de159e0_0;
+    %pad/u 33;
+    %load/vec4 v0x10de15940_0;
+    %pad/u 33;
+    %add;
+    %split/vec4 32;
+    %ix/load 4, 0, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4 v0x10de15d00_0, 4, 32;
+    %store/vec4 v0x10de15c60_0, 0, 1;
+    %jmp T_2.6;
+T_2.1 ;
+    %load/vec4 v0x10de159e0_0;
+    %pad/u 65;
+    %load/vec4 v0x10de15940_0;
+    %pad/u 65;
+    %mul;
+    %split/vec4 64;
+    %store/vec4 v0x10de15d00_0, 0, 64;
+    %store/vec4 v0x10de15c60_0, 0, 1;
+    %jmp T_2.6;
+T_2.2 ;
+    %load/vec4 v0x10de159e0_0;
+    %pad/u 33;
+    %load/vec4 v0x10de15940_0;
+    %pad/u 33;
+    %sub;
+    %split/vec4 32;
+    %ix/load 4, 0, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4 v0x10de15d00_0, 4, 32;
+    %store/vec4 v0x10de15c60_0, 0, 1;
+    %jmp T_2.6;
+T_2.3 ;
+    %load/vec4 v0x10de15b10_0;
+    %flag_set/vec4 8;
+    %jmp/0 T_2.7, 8;
+    %vpi_func/r 3 55 "$sqrt", v0x10de15940_0 {0 0 0};
+    %vpi_func/r 3 55 "$floor", W<0,r> {0 1 0};
+    %cvt/vr 32;
+    %pad/s 33;
+    %jmp/1 T_2.8, 8;
+T_2.7 ; End of true expr.
+    %vpi_func/r 3 55 "$sqrt", v0x10de159e0_0 {0 0 0};
+    %vpi_func/r 3 55 "$floor", W<0,r> {0 1 0};
+    %cvt/vr 32;
+    %pad/s 33;
+    %jmp/0 T_2.8, 8;
+ ; End of false expr.
+    %blend;
+T_2.8;
+    %split/vec4 32;
+    %ix/load 4, 0, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4 v0x10de15d00_0, 4, 32;
+    %store/vec4 v0x10de15c60_0, 0, 1;
+    %jmp T_2.6;
+T_2.4 ;
+    %pushi/vec4 0, 0, 64;
+    %store/vec4 v0x10de15d00_0, 0, 64;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x10de15c60_0, 0, 1;
+    %jmp T_2.6;
+T_2.6 ;
+    %pop/vec4 1;
+    %jmp T_2;
+    .thread T_2, $push;
+    .scope S_0x10de04360;
+T_3 ;
+    %vpi_call/w 3 82 "$dumpfile", "calculator_dump.vcd" {0 0 0};
+    %vpi_call/w 3 83 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x10de04360 {0 0 0};
+    %end;
+    .thread T_3;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/Volumes/My_Data/MY_SYSTEMVERILOG_UVM_PROJECTS/RISCV_PROJECT/RISCV_MYTH_COURSE/lab_SV/calculator/calculator_piped.sv";
+    "/Volumes/My_Data/MY_SYSTEMVERILOG_UVM_PROJECTS/RISCV_PROJECT/RISCV_MYTH_COURSE/lab_SV/calculator/en_ff.sv";

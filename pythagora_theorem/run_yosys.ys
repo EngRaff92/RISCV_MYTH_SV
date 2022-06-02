@@ -1,0 +1,16 @@
+# read design with -SV option
+read_verilog -defer -overwrite -sv sqrt_int.sv en_ff.sv clock_g.sv pythagora_th.sv
+
+# generic define the top
+hierarchy -check -top pythagora_th
+
+# Process
+proc
+fsm
+opt
+proc
+clean
+flatten
+
+# Dot view file
+show -prefix view_file -notitle -colors 2 -width -format dot

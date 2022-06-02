@@ -1,0 +1,16 @@
+# read design with -SV option
+read_verilog -defer -overwrite -sv sqrt_c.sv en_ff.sv calculator.sv
+
+# generic define the top
+hierarchy -check -top calculator
+
+# Process
+proc
+fsm
+opt
+clean
+#flatten
+proc
+
+# Dot view file
+show -prefix view_file -notitle -colors 2 -width -format dot

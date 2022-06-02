@@ -1,0 +1,13 @@
+# read files
+read_verilog -sv sqrt_int.sv en_ff.sv clock_g.sv pythagora_th.sv
+# generic synthesis define the top
+synth -top pythagora_th
+# mapping cells
+dfflibmap -liberty /Users/raffaelemac/OpenLane/pdks/volare/sky130/versions/41c0908b47130d5675ff8484255b43f66463a7d6/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_100C_1v65.lib
+abc -liberty /Users/raffaelemac/OpenLane/pdks/volare/sky130/versions/41c0908b47130d5675ff8484255b43f66463a7d6/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_100C_1v65.lib
+proc
+clean
+flatten
+show -prefix view_file -notitle -colors 2 -width -format dot
+# write synthesized design
+write_verilog -sv synth.sv

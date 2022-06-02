@@ -1,0 +1,8 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1654182183" />
+    <testcase name="pythagora_th_cocotb_test" classname="pythagora_th_cocotb_test" file="/Volumes/My_Data/MY_SYSTEMVERILOG_UVM_PROJECTS/RISCV_PROJECT/RISCV_MYTH_COURSE/lab_SV/pythagora_theorem/pythagora_th_cocotb_test.py" lineno="7" time="0.002267122268676758" sim_time_ns="211.0" ratio_time="93069.52823640761">
+      <failure />
+    </testcase>
+  </testsuite>
+</testsuites>
