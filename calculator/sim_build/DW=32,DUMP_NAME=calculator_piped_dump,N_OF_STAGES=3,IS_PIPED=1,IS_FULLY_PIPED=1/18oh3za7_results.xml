@@ -1,0 +1,8 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1654198415" />
+    <testcase name="calculator_piped_cocotb_test" classname="calculator_piped_cocotb_test" file="/Volumes/My_Data/MY_SYSTEMVERILOG_UVM_PROJECTS/RISCV_PROJECT/RISCV_MYTH_COURSE/lab_SV/calculator/calculator_piped_cocotb_test.py" lineno="32" time="0.0027871131896972656" sim_time_ns="136.0" ratio_time="48796.00889649273">
+      <failure />
+    </testcase>
+  </testsuite>
+</testsuites>

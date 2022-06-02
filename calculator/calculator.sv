@@ -49,7 +49,7 @@ module calculator#(
 	);
 
 	/** Internal Logic Signals */
-	logic [2*DW-1:0] place_h_res;
+	logic [2*DW-1:0] place_h_res, sampled_res;
 	logic overflow;
 	logic [DW-1:0] root_out;
 
@@ -72,7 +72,7 @@ module calculator#(
 		.op_out(root_out));
 
 	/** Sample result only if there is no overflow*/
-	en_ff#(2*DW,1'b0,1'b1,32'h0) u_ff_sampling(
+	en_ff#(2*DW,1'b0,1'b1,{2*DW{1'b0}}) u_ff_sampling(
 		.ff_clk      (calc_clock),
 		.ff_rst      (calc_rst),
 		.ff_en       (~overflow),
@@ -92,7 +92,7 @@ module calculator#(
 `ifdef COCOTB_SIM
 	initial begin
 	    $dumpfile({DUMP_NAME,".vcd"});
-	    $dumpvars(0, calculator_piped);
+	    $dumpvars(0, calculator);
 	end
 `endif
 endmodule // calculator

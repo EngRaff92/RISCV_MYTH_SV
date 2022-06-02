@@ -39,6 +39,7 @@ async def calculator_piped_cocotb_test(dut):
     dut.op_in1.value        = 0
     dut.op_in2.value        = 0
     dut.op_in_sel.value     = 0
+    dut.different.value     = 0
 
     ''' Reset Generation '''
     await Timer(10, units='ns')
@@ -63,8 +64,12 @@ async def calculator_piped_cocotb_test(dut):
         dut.op_in_sel.value = op_sel
         exp_h               = get_exp_result(elem.value,op1,op2,op_sel)
         await FallingEdge(dut.calc_clock)
+        await FallingEdge(dut.calc_clock)
+        await FallingEdge(dut.calc_clock)
         if(dut.valid_res == 1):
+            dut.different.value = (dut.result != exp_h)
             assert dut.result == exp_h, "Failed on the {} opartion. Got {}, expected {}".format(elem.name,dut.result,exp_h)
         else:
+            dut.different.value = (dut.result != 0)
             assert dut.result == 0, "Failed on the {} opartion. Got {}, expected {} when result is not valid".format(elem.name,dut.result,0)
         await RisingEdge(dut.calc_clock)
