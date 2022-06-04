@@ -1,16 +1,26 @@
 # read design with -SV option
-read_verilog -defer -overwrite -sv sqrt_c.sv en_ff.sv calculator.sv
+#read_verilog -defer -overwrite -sv sqrt_c.sv en_ff.sv calculator.sv
+
+read_verilog -defer -overwrite -sv pipe_ff.sv sqrt_c.sv en_ff.sv calculator_piped.sv
 
 # generic define the top
-hierarchy -check -top calculator
+hierarchy -check -top calculator_piped
 
 # Process
 proc
-fsm
-opt
-clean
+#fsm
+#opt
+#clean
 #flatten
-proc
+#proc
+#simplemap
+#memory -nomap
+#wreduce -memx
+#opt -full
+#aigmap
 
 # Dot view file
-show -prefix view_file -notitle -colors 2 -width -format dot
+#show -prefix view_file -notitle -colors 2 -width -format dot
+
+# write json file
+write_json result.json

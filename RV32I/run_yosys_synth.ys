@@ -1,0 +1,27 @@
+# read design with -SV option
+read_verilog -defer -overwrite -sv \ 
+alu.sv \
+data_memory.sv \
+instruction_fetch.sv \
+opcode_decoder.sv \
+register_file.sv \
+clock_g.sv \
+en_ff.sv \
+instruction_memory.sv \
+pipe_ff.sv \
+rv32i_core.sv
+
+# generic synthesis define the top
+synth -top rv32i_core
+
+# mapping cells
+dfflibmap -liberty /Users/raffaelemac/OpenLane/pdks/volare/sky130/versions/41c0908b47130d5675ff8484255b43f66463a7d6/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_100C_1v65.lib
+abc -liberty /Users/raffaelemac/OpenLane/pdks/volare/sky130/versions/41c0908b47130d5675ff8484255b43f66463a7d6/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_100C_1v65.lib
+
+# Opt and Proc
+proc
+clean
+#flatten
+
+# write synthesized design
+write_verilog -sv rv32i_core.sv

@@ -1,0 +1,26 @@
+# read design with -SV option
+read_verilog -defer -overwrite -sv \ 
+alu.sv \
+data_memory.sv \
+instruction_fetch.sv \
+opcode_decoder.sv \
+register_file.sv \
+clock_g.sv \
+en_ff.sv \
+instruction_memory.sv \
+pipe_ff.sv \
+rv32i_core.sv
+
+# generic define the top
+hierarchy -check -top rv32i_core
+
+# Process
+proc
+fsm
+opt
+clean
+#flatten
+proc
+
+# Dot view file
+show -prefix view_file -notitle -colors 2 -width -format dot

@@ -1,0 +1,39 @@
+addrmap rv32i_reg_file {
+        name = "RV32I Register File Map";
+        desc = "This is the standard set of registers used in the RV32I as stated by the ISA structure and specifications ";
+    
+        default regwidth = 32;
+        default sw = rw;
+        default hw = r;
+        reg {
+                name = "X0 value";
+                field {
+                desc = "This register can be only read by HW nor write should be permitted, this register contains the value zero";
+                sw=r; hw=r;
+                }x0_zero[31:0] = 0;
+        }X0 @ 0x0;
+
+        reg {
+                name = "Xra value";
+                field {
+                    desc = "This register can be only read by HW nor write should be permitted";
+                }xra[31:0] = 0;
+        }XRA @ 0x4;
+
+        reg {
+            name = "Xsp value";
+            field {
+                desc = "This register can be only read by HW nor write should be permitted";
+                hw=rw;
+            }xsp[31:0] = 0;
+        }XSP @ 0x8;
+
+    //reg {
+    //    name = "Xgp value";
+    //    field {
+    //        desc = "This register can be only read by HW nor write should be permitted";
+    //        hw=rw;
+    //    }xgp[31:0] = 0;
+    //}XGP @ 0xc;
+} RV32I_regfile;
+
