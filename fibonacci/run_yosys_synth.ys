@@ -1,0 +1,34 @@
+# read files
+#read_verilog -defer -overwrite -sv sqrt_c.sv en_ff.sv calculator.sv
+
+# read files
+read_verilog -defer -overwrite -sv pipe_ff.sv sqrt_c.sv en_ff.sv calculator_piped.sv
+
+# generic synthesis define the top
+#synth -top calculator
+synth -top calculator_piped
+
+# mapping cells
+dfflibmap -liberty /Users/raffaelemac/OpenLane/pdks/volare/sky130/versions/41c0908b47130d5675ff8484255b43f66463a7d6/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_100C_1v65.lib
+abc -liberty /Users/raffaelemac/OpenLane/pdks/volare/sky130/versions/41c0908b47130d5675ff8484255b43f66463a7d6/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_100C_1v65.lib
+
+# Process and optimize if needed
+proc
+#fsm
+opt
+clean
+#flatten
+proc
+memory -nomap
+wreduce -memx
+#opt -full
+#aigmap
+
+# Dot view file
+show -prefix view_file -notitle -colors 2 -width -format dot
+
+# write json file hard to visualize using netlistsvg
+#write_json result.json
+
+# write synthesized design
+write_verilog -sv synth.sv
