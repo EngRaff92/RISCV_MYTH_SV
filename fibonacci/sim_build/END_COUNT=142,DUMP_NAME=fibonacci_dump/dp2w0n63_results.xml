@@ -1,0 +1,8 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1654462216" />
+    <testcase name="fibonacci_cocotb_test" classname="fibonacci_cocotb_test" file="/Volumes/My_Data/MY_SYSTEMVERILOG_UVM_PROJECTS/RISCV_PROJECT/RISCV_MYTH_COURSE/lab_SV/fibonacci/fibonacci_cocotb_test.py" lineno="6" time="0.005179882049560547" sim_time_ns="1011.0" ratio_time="195178.18945042806">
+      <failure />
+    </testcase>
+  </testsuite>
+</testsuites>

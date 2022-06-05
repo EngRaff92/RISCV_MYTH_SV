@@ -1,0 +1,213 @@
+#! /opt/homebrew/Cellar/icarus-verilog/11.0/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/system.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/v2005_math.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/va_math.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/v2009.vpi";
+S_0x127e0de20 .scope package, "$unit" "$unit" 2 1;
+ .timescale 0 0;
+S_0x127e0b0d0 .scope module, "fibonacci_piped" "fibonacci_piped" 3 10;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst";
+    .port_info 2 /OUTPUT 1 "done";
+    .port_info 3 /OUTPUT 32 "result";
+P_0x127e0db10 .param/str "DUMP_NAME" 0 3 13, "fibonacci_piped_dump";
+P_0x127e0db50 .param/l "END_COUNT" 0 3 12, +C4<00000000000000000000000010010000>;
+L_0x127e21380 .functor NOT 1, L_0x127e21240, C4<0>, C4<0>, C4<0>;
+L_0x127e215e0 .functor NOT 1, L_0x127e214e0, C4<0>, C4<0>, C4<0>;
+L_0x127e21a20 .functor BUFZ 1, v0x127e1f780_0, C4<0>, C4<0>, C4<0>;
+L_0x127e21a90 .functor BUFZ 32, v0x127e20340_0, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+L_0x130040010 .functor BUFT 1, C4<00000000000000000000000010010000>, C4<0>, C4<0>, C4<0>;
+v0x127e206c0_0 .net/2u *"_ivl_0", 31 0, L_0x130040010;  1 drivers
+L_0x1300400a0 .functor BUFT 1, C4<00000000000000000000000010010000>, C4<0>, C4<0>, C4<0>;
+v0x127e20780_0 .net/2u *"_ivl_12", 31 0, L_0x1300400a0;  1 drivers
+L_0x1300400e8 .functor BUFT 1, C4<00000000000000000000000010010000>, C4<0>, C4<0>, C4<0>;
+v0x127e20820_0 .net/2u *"_ivl_16", 31 0, L_0x1300400e8;  1 drivers
+v0x127e208d0_0 .net *"_ivl_2", 0 0, L_0x127e21240;  1 drivers
+L_0x130040058 .functor BUFT 1, C4<00000000000000000000000010010000>, C4<0>, C4<0>, C4<0>;
+v0x127e20970_0 .net/2u *"_ivl_6", 31 0, L_0x130040058;  1 drivers
+v0x127e20a60_0 .net *"_ivl_8", 0 0, L_0x127e214e0;  1 drivers
+o0x130008040 .functor BUFZ 1, C4<z>; HiZ drive
+v0x127e20b00_0 .net "clk", 0 0, o0x130008040;  0 drivers
+v0x127e20b90_0 .var "current_value", 31 0;
+v0x127e20c40_0 .net "done", 0 0, L_0x127e21a20;  1 drivers
+v0x127e20d50_0 .net "done_piped", 0 0, v0x127e1f780_0;  1 drivers
+v0x127e20e00_0 .net "gated_clk", 0 0, L_0x127e217f0;  1 drivers
+v0x127e20e90_0 .var "prev_value", 31 0;
+v0x127e20f20_0 .net "result", 31 0, L_0x127e21a90;  1 drivers
+v0x127e20fb0_0 .net "result_pided", 31 0, v0x127e20340_0;  1 drivers
+o0x130008610 .functor BUFZ 1, C4<z>; HiZ drive
+v0x127e21060_0 .net "rst", 0 0, o0x130008610;  0 drivers
+E_0x127e0aff0 .event posedge, v0x127e21060_0, v0x127e1efd0_0;
+L_0x127e21240 .cmp/eq 32, v0x127e20b90_0, L_0x130040010;
+L_0x127e214e0 .cmp/eq 32, v0x127e20b90_0, L_0x130040058;
+L_0x127e216b0 .cmp/eq 32, v0x127e20b90_0, L_0x1300400a0;
+L_0x127e21920 .cmp/eq 32, v0x127e20b90_0, L_0x1300400e8;
+S_0x127e09b10 .scope module, "clock_gating_cell" "clock_g" 3 54, 4 8 0, S_0x127e0b0d0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk_in";
+    .port_info 1 /INPUT 1 "clk_en";
+    .port_info 2 /OUTPUT 1 "clock_out";
+L_0x127e217f0 .functor AND 1, o0x130008040, v0x127e1f070_0, C4<1>, C4<1>;
+v0x127e0ae50_0 .net "clk_en", 0 0, L_0x127e21920;  1 drivers
+v0x127e1efd0_0 .net "clk_in", 0 0, o0x130008040;  alias, 0 drivers
+v0x127e1f070_0 .var "clock_enable", 0 0;
+v0x127e1f120_0 .net "clock_out", 0 0, L_0x127e217f0;  alias, 1 drivers
+E_0x127e0d8f0 .event edge, v0x127e1efd0_0, v0x127e0ae50_0;
+S_0x127e1f210 .scope module, "done_piped_ff" "pipe_ff" 3 47, 5 3 0, S_0x127e0b0d0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "stage_clk";
+    .port_info 1 /INPUT 1 "stage_rst";
+    .port_info 2 /INPUT 1 "stage_in_d";
+    .port_info 3 /OUTPUT 1 "stage_out_q";
+P_0x127e1f3e0 .param/l "FF_WIDTH" 0 5 5, +C4<00000000000000000000000000000001>;
+P_0x127e1f420 .param/l "INITAL_VALUE" 0 5 6, C4<0>;
+v0x127e1f780_0 .var "q", 0 0;
+v0x127e1f840_0 .net "stage_clk", 0 0, L_0x127e217f0;  alias, 1 drivers
+v0x127e1f900_0 .net "stage_in_d", 0 0, L_0x127e216b0;  1 drivers
+v0x127e1f9b0_0 .net "stage_out_q", 0 0, v0x127e1f780_0;  alias, 1 drivers
+v0x127e1fa50_0 .net "stage_rst", 0 0, L_0x127e215e0;  1 drivers
+E_0x127e1f570 .event posedge, v0x127e1fa50_0, v0x127e1f120_0;
+S_0x127e1f5b0 .scope begin, "proc_stage" "proc_stage" 5 26, 5 26 0, S_0x127e1f210;
+ .timescale 0 0;
+S_0x127e1fb70 .scope begin, "proc_" "proc_" 3 30, 3 30 0, S_0x127e0b0d0;
+ .timescale -9 -9;
+S_0x127e1fd30 .scope module, "result_pided_ff" "pipe_ff" 3 41, 5 3 0, S_0x127e0b0d0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "stage_clk";
+    .port_info 1 /INPUT 1 "stage_rst";
+    .port_info 2 /INPUT 32 "stage_in_d";
+    .port_info 3 /OUTPUT 32 "stage_out_q";
+P_0x127e1fef0 .param/l "FF_WIDTH" 0 5 5, +C4<00000000000000000000000000100000>;
+P_0x127e1ff30 .param/l "INITAL_VALUE" 0 5 6, C4<00000000000000000000000000000000>;
+v0x127e20340_0 .var "q", 31 0;
+v0x127e20400_0 .net "stage_clk", 0 0, L_0x127e217f0;  alias, 1 drivers
+v0x127e204a0_0 .net "stage_in_d", 31 0, v0x127e20b90_0;  1 drivers
+v0x127e20530_0 .net "stage_out_q", 31 0, v0x127e20340_0;  alias, 1 drivers
+v0x127e205c0_0 .net "stage_rst", 0 0, L_0x127e21380;  1 drivers
+E_0x127e20130 .event posedge, v0x127e205c0_0, v0x127e1f120_0;
+S_0x127e20170 .scope begin, "proc_stage" "proc_stage" 5 26, 5 26 0, S_0x127e1fd30;
+ .timescale 0 0;
+    .scope S_0x127e1fd30;
+T_0 ;
+    %end;
+    .thread T_0;
+    .scope S_0x127e1fd30;
+T_1 ;
+    %wait E_0x127e20130;
+    %fork t_1, S_0x127e20170;
+    %jmp t_0;
+    .scope S_0x127e20170;
+t_1 ;
+    %load/vec4 v0x127e205c0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.0, 8;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x127e20340_0, 0;
+    %jmp T_1.1;
+T_1.0 ;
+    %load/vec4 v0x127e204a0_0;
+    %assign/vec4 v0x127e20340_0, 0;
+T_1.1 ;
+    %end;
+    .scope S_0x127e1fd30;
+t_0 %join;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0x127e1f210;
+T_2 ;
+    %end;
+    .thread T_2;
+    .scope S_0x127e1f210;
+T_3 ;
+    %wait E_0x127e1f570;
+    %fork t_3, S_0x127e1f5b0;
+    %jmp t_2;
+    .scope S_0x127e1f5b0;
+t_3 ;
+    %load/vec4 v0x127e1fa50_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_3.0, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x127e1f780_0, 0;
+    %jmp T_3.1;
+T_3.0 ;
+    %load/vec4 v0x127e1f900_0;
+    %assign/vec4 v0x127e1f780_0, 0;
+T_3.1 ;
+    %end;
+    .scope S_0x127e1f210;
+t_2 %join;
+    %jmp T_3;
+    .thread T_3;
+    .scope S_0x127e09b10;
+T_4 ;
+Ewait_0 .event/or E_0x127e0d8f0, E_0x0;
+    %wait Ewait_0;
+    %load/vec4 v0x127e1efd0_0;
+    %inv;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_4.0, 8;
+    %load/vec4 v0x127e0ae50_0;
+    %store/vec4 v0x127e1f070_0, 0, 1;
+T_4.0 ;
+    %jmp T_4;
+    .thread T_4, $push;
+    .scope S_0x127e0b0d0;
+T_5 ;
+    %wait E_0x127e0aff0;
+    %fork t_5, S_0x127e1fb70;
+    %jmp t_4;
+    .scope S_0x127e1fb70;
+t_5 ;
+    %load/vec4 v0x127e21060_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_5.0, 8;
+    %pushi/vec4 1, 0, 32;
+    %assign/vec4 v0x127e20b90_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x127e20e90_0, 0;
+    %jmp T_5.1;
+T_5.0 ;
+    %load/vec4 v0x127e20b90_0;
+    %assign/vec4 v0x127e20e90_0, 0;
+    %load/vec4 v0x127e20b90_0;
+    %cmpi/e 144, 0, 32;
+    %flag_mov 8, 4;
+    %jmp/0 T_5.2, 8;
+    %load/vec4 v0x127e20b90_0;
+    %jmp/1 T_5.3, 8;
+T_5.2 ; End of true expr.
+    %load/vec4 v0x127e20b90_0;
+    %load/vec4 v0x127e20e90_0;
+    %add;
+    %jmp/0 T_5.3, 8;
+ ; End of false expr.
+    %blend;
+T_5.3;
+    %assign/vec4 v0x127e20b90_0, 0;
+T_5.1 ;
+    %end;
+    .scope S_0x127e0b0d0;
+t_4 %join;
+    %jmp T_5;
+    .thread T_5;
+    .scope S_0x127e0b0d0;
+T_6 ;
+    %vpi_call/w 3 67 "$dumpfile", "fibonacci_piped_dump.vcd" {0 0 0};
+    %vpi_call/w 3 68 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x127e0b0d0 {0 0 0};
+    %end;
+    .thread T_6;
+# The file index is used to find the file name in the following table.
+:file_names 6;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/Volumes/My_Data/MY_SYSTEMVERILOG_UVM_PROJECTS/RISCV_PROJECT/RISCV_MYTH_COURSE/lab_SV/fibonacci/fibonacci_piped.sv";
+    "/Volumes/My_Data/MY_SYSTEMVERILOG_UVM_PROJECTS/RISCV_PROJECT/RISCV_MYTH_COURSE/lab_SV/fibonacci/clock_g.sv";
+    "/Volumes/My_Data/MY_SYSTEMVERILOG_UVM_PROJECTS/RISCV_PROJECT/RISCV_MYTH_COURSE/lab_SV/fibonacci/pipe_ff.sv";

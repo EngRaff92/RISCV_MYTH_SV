@@ -1,0 +1,177 @@
+$date
+	Sun Jun  5 22:15:24 2022
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module fibonacci_piped $end
+$var wire 1 ! clk $end
+$var wire 1 " done $end
+$var wire 32 # result [31:0] $end
+$var wire 1 $ rst $end
+$var wire 32 % result_pided [31:0] $end
+$var wire 1 & gated_clk $end
+$var wire 1 ' done_piped $end
+$var reg 32 ( current_value [31:0] $end
+$var reg 32 ) prev_value [31:0] $end
+$scope module clock_gating_cell $end
+$var wire 1 * clk_en $end
+$var wire 1 ! clk_in $end
+$var wire 1 & clock_out $end
+$var reg 1 + clock_enable $end
+$upscope $end
+$scope module done_piped_ff $end
+$var wire 1 & stage_clk $end
+$var wire 1 , stage_in_d $end
+$var wire 1 ' stage_out_q $end
+$var wire 1 - stage_rst $end
+$var reg 1 ' q $end
+$scope begin proc_stage $end
+$upscope $end
+$upscope $end
+$scope module result_pided_ff $end
+$var wire 1 & stage_clk $end
+$var wire 32 . stage_in_d [31:0] $end
+$var wire 32 / stage_out_q [31:0] $end
+$var wire 1 0 stage_rst $end
+$var reg 32 1 q [31:0] $end
+$scope begin proc_stage $end
+$upscope $end
+$upscope $end
+$scope begin proc_ $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx 1
+x0
+bx /
+bx .
+x-
+x,
+x+
+x*
+bx )
+bx (
+x'
+0&
+bx %
+0$
+bx #
+x"
+0!
+$end
+#10
+b0 #
+b0 %
+b0 /
+b0 1
+0"
+0'
+10
+1-
+0+
+b0 )
+0,
+0*
+b1 (
+b1 .
+1$
+#20
+b1 )
+0$
+1!
+#25
+0!
+#30
+b10 (
+b10 .
+1!
+#35
+0!
+#40
+b11 (
+b11 .
+b10 )
+1!
+#45
+0!
+#50
+b101 (
+b101 .
+b11 )
+1!
+#55
+0!
+#60
+b1000 (
+b1000 .
+b101 )
+1!
+#65
+0!
+#70
+b1101 (
+b1101 .
+b1000 )
+1!
+#75
+0!
+#80
+b10101 (
+b10101 .
+b1101 )
+1!
+#85
+0!
+#90
+b100010 (
+b100010 .
+b10101 )
+1!
+#95
+0!
+#100
+b110111 (
+b110111 .
+b100010 )
+1!
+#105
+0!
+#110
+b1011001 (
+b1011001 .
+b110111 )
+1!
+#115
+0!
+#120
+00
+0-
+1,
+1*
+b10010000 (
+b10010000 .
+b1011001 )
+1!
+#125
+1+
+0!
+#130
+1"
+1'
+b10010000 #
+b10010000 %
+b10010000 /
+b10010000 1
+b10010000 )
+1&
+1!
+#135
+0&
+0!
+#136

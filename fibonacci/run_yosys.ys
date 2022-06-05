@@ -1,10 +1,12 @@
 # read design with -SV option
-#read_verilog -defer -overwrite -sv sqrt_c.sv en_ff.sv calculator.sv
+#read_verilog -defer -overwrite -sv en_ff.sv clock_g.sv fibonacci_piped.sv
 
-read_verilog -defer -overwrite -sv pipe_ff.sv sqrt_c.sv en_ff.sv calculator_piped.sv
+# read design with -SV option
+read_verilog -sv fibonacci.sv
 
 # generic define the top
-hierarchy -check -top calculator_piped
+#hierarchy -check -top fibonacci_piped
+hierarchy -check -top fibonacci
 
 # Process
 proc
@@ -20,7 +22,7 @@ proc
 #aigmap
 
 # Dot view file
-#show -prefix view_file -notitle -colors 2 -width -format dot
+show -prefix view_file -notitle -colors 2 -width -format dot
 
 # write json file
 write_json result.json

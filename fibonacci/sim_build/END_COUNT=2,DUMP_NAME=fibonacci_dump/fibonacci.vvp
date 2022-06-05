@@ -1,0 +1,98 @@
+#! /opt/homebrew/Cellar/icarus-verilog/11.0/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/system.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/v2005_math.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/va_math.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/11.0/lib/ivl/v2009.vpi";
+S_0x123e0a7f0 .scope package, "$unit" "$unit" 2 1;
+ .timescale 0 0;
+S_0x123e0a960 .scope module, "fibonacci" "fibonacci" 3 10;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst";
+    .port_info 2 /OUTPUT 1 "done";
+    .port_info 3 /OUTPUT 32 "result";
+P_0x123e08e50 .param/str "DUMP_NAME" 0 3 13, "fibonacci_dump";
+P_0x123e08e90 .param/l "END_COUNT" 0 3 12, +C4<00000000000000000000000000000010>;
+L_0x123e1bae0 .functor AND 32, v0x123e1b360_0, L_0x123e1b870, C4<11111111111111111111111111111111>, C4<11111111111111111111111111111111>;
+L_0x128050010 .functor BUFT 1, C4<00000000000000000000000000000010>, C4<0>, C4<0>, C4<0>;
+v0x123e0b190_0 .net/2u *"_ivl_0", 31 0, L_0x128050010;  1 drivers
+v0x123e1b210_0 .net *"_ivl_4", 31 0, L_0x123e1b870;  1 drivers
+o0x128018070 .functor BUFZ 1, C4<z>; HiZ drive
+v0x123e1b2b0_0 .net "clk", 0 0, o0x128018070;  0 drivers
+v0x123e1b360_0 .var "current_value", 31 0;
+v0x123e1b400_0 .net "done", 0 0, L_0x123e1b750;  1 drivers
+v0x123e1b4e0_0 .var "prev_value", 31 0;
+v0x123e1b590_0 .net "result", 31 0, L_0x123e1bae0;  1 drivers
+o0x128018160 .functor BUFZ 1, C4<z>; HiZ drive
+v0x123e1b640_0 .net "rst", 0 0, o0x128018160;  0 drivers
+E_0x123e06c00 .event posedge, v0x123e1b640_0, v0x123e1b2b0_0;
+L_0x123e1b750 .cmp/eq 32, v0x123e1b360_0, L_0x128050010;
+LS_0x123e1b870_0_0 .concat [ 1 1 1 1], L_0x123e1b750, L_0x123e1b750, L_0x123e1b750, L_0x123e1b750;
+LS_0x123e1b870_0_4 .concat [ 1 1 1 1], L_0x123e1b750, L_0x123e1b750, L_0x123e1b750, L_0x123e1b750;
+LS_0x123e1b870_0_8 .concat [ 1 1 1 1], L_0x123e1b750, L_0x123e1b750, L_0x123e1b750, L_0x123e1b750;
+LS_0x123e1b870_0_12 .concat [ 1 1 1 1], L_0x123e1b750, L_0x123e1b750, L_0x123e1b750, L_0x123e1b750;
+LS_0x123e1b870_0_16 .concat [ 1 1 1 1], L_0x123e1b750, L_0x123e1b750, L_0x123e1b750, L_0x123e1b750;
+LS_0x123e1b870_0_20 .concat [ 1 1 1 1], L_0x123e1b750, L_0x123e1b750, L_0x123e1b750, L_0x123e1b750;
+LS_0x123e1b870_0_24 .concat [ 1 1 1 1], L_0x123e1b750, L_0x123e1b750, L_0x123e1b750, L_0x123e1b750;
+LS_0x123e1b870_0_28 .concat [ 1 1 1 1], L_0x123e1b750, L_0x123e1b750, L_0x123e1b750, L_0x123e1b750;
+LS_0x123e1b870_1_0 .concat [ 4 4 4 4], LS_0x123e1b870_0_0, LS_0x123e1b870_0_4, LS_0x123e1b870_0_8, LS_0x123e1b870_0_12;
+LS_0x123e1b870_1_4 .concat [ 4 4 4 4], LS_0x123e1b870_0_16, LS_0x123e1b870_0_20, LS_0x123e1b870_0_24, LS_0x123e1b870_0_28;
+L_0x123e1b870 .concat [ 16 16 0 0], LS_0x123e1b870_1_0, LS_0x123e1b870_1_4;
+S_0x123e0b020 .scope begin, "proc_" "proc_" 3 26, 3 26 0, S_0x123e0a960;
+ .timescale -9 -9;
+    .scope S_0x123e0a960;
+T_0 ;
+    %wait E_0x123e06c00;
+    %fork t_1, S_0x123e0b020;
+    %jmp t_0;
+    .scope S_0x123e0b020;
+t_1 ;
+    %load/vec4 v0x123e1b640_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 1, 0, 32;
+    %assign/vec4 v0x123e1b360_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x123e1b4e0_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x123e1b360_0;
+    %assign/vec4 v0x123e1b4e0_0, 0;
+    %load/vec4 v0x123e1b360_0;
+    %cmpi/e 2, 0, 32;
+    %flag_mov 8, 4;
+    %jmp/0 T_0.2, 8;
+    %load/vec4 v0x123e1b360_0;
+    %jmp/1 T_0.3, 8;
+T_0.2 ; End of true expr.
+    %load/vec4 v0x123e1b360_0;
+    %load/vec4 v0x123e1b4e0_0;
+    %add;
+    %jmp/0 T_0.3, 8;
+ ; End of false expr.
+    %blend;
+T_0.3;
+    %assign/vec4 v0x123e1b360_0, 0;
+T_0.1 ;
+    %end;
+    .scope S_0x123e0a960;
+t_0 %join;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x123e0a960;
+T_1 ;
+    %vpi_call/w 3 44 "$dumpfile", "fibonacci_dump.vcd" {0 0 0};
+    %vpi_call/w 3 45 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x123e0a960 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/Volumes/My_Data/MY_SYSTEMVERILOG_UVM_PROJECTS/RISCV_PROJECT/RISCV_MYTH_COURSE/lab_SV/fibonacci/fibonacci.sv";
