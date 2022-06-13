@@ -1,9 +1,10 @@
 # read design with -SV option
-read_verilog -defer -overwrite -sv instruction_fetch.sv en_ff.sv adder_rv.sv
+#read_verilog -defer -overwrite -sv instruction_fetch.sv en_ff.sv adder_rv.sv 
+read_verilog -defer -overwrite -sv adder_rv.sv clock_g.sv en_ff.sv instruction_memory.sv rv32i_core.sv alu.sv data_memory.sv instruction_fetch.sv opcode_decoder.sv register_file.sv
 
 # generic define the top
-#hierarchy -check -top rv32i_core
-hierarchy -check -top instruction_fetch
+hierarchy -check -top rv32i_core
+#hierarchy -check -top instruction_fetch
 
 # Process
 proc

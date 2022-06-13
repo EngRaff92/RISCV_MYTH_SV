@@ -32,6 +32,7 @@ module data_memory #(
         input logic [ADDR_W-1:0]        d_addr,
         input logic [DATA_LEN-1:0]      d_w_data,
         input logic                     d_rw_en,
+        input logic                     d_cs,
         output logic [DATA_LEN-1:0]     d_r_data
     );
     
@@ -46,25 +47,27 @@ module data_memory #(
             if(rst_n) begin
                 for(mem_i = 0; mem_i < N_WORD; mem_i++) data_mem_array[mem_i] = {DATA_LEN{1'b0}};
             end else begin
-                if(d_rw_en) begin   // Write
-                    data_mem_array[d_addr]  <= d_w_data;
-                    d_r_data                <= {DATA_LEN{1'bz}};
-                end                 // if(d_rw_en)
-                else begin          // Read
-                    d_r_data                <= data_mem_array[d_addr];
-                end                 // else
+                if(d_cs) begin // memory selected start
+                    if(d_rw_en) begin   // Write
+                        data_mem_array[d_addr]  <= d_w_data;
+                        d_r_data                <= {DATA_LEN{1'bz}};
+                    end else begin      // Read
+                        d_r_data                <= data_mem_array[d_addr];
+                    end 
+                end            // memoery selected end
             end
         end
     end // if(IS_CLOCKED == 1)
     else begin
         always_comb begin
-            if(d_rw_en) begin
-                data_mem_array[d_addr] = d_w_data;
-                d_r_data               = {DATA_LEN{1'bz}};
-            end
-            else begin
-                d_r_data               = data_mem_array[d_addr];
-            end
+            if(d_cs) begin  // memory selected start            
+                if(d_rw_en) begin
+                    data_mem_array[d_addr] = d_w_data;
+                    d_r_data               = {DATA_LEN{1'bz}};
+                end else begin
+                    d_r_data               = data_mem_array[d_addr];
+                end
+            end             // memoery selected end
         end // always_comb
     end // if(IS_CLOCKED == 0)
     endgenerate
